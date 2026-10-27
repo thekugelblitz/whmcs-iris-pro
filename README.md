@@ -1,3 +1,5 @@
+<img width="2528" height="781" alt="Screenshot_1" src="https://github.com/user-attachments/assets/b0397cf9-5b27-4fdb-9c8c-754d6d55f03f" />
+
 # Iris Pro — WHMCS Admin Theme with Dark Mode
 
 Iris Pro is a WHMCS administrator theme with a light interface, an AMOLED-inspired dark mode, a navigation theme switch, and optional custom logos. It is based on the WHMCS Iris admin theme and is currently made for and compatible with **WHMCS 9.1.x**.
