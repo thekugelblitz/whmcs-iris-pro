@@ -8,12 +8,27 @@
 
     <title>WHMCS - {$pagetitle}</title>
 
-    {* Blocking, before CSS: restore the appearance without a light-theme flash. *}
-    <script src="templates/{$template}/js/appearance.js?v={$versionHash}&amp;iris=2"></script>
+    {* Set the saved palette before the browser can paint the document. This
+       inline bootstrap must remain ahead of every external script and style. *}
+    <script>
+        (function () {
+            var saved = null;
+            try { saved = window.localStorage.getItem('whmcs.iris-pro.appearance'); } catch (error) {}
+            var dark = saved === 'dark' || (saved !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            if (dark) {
+                document.documentElement.setAttribute('data-iris-appearance', 'dark');
+                document.documentElement.style.colorScheme = 'dark';
+                document.documentElement.style.backgroundColor = '#000000';
+            }
+        }());
+    </script>
 
     {\WHMCS\View\Asset::fontCssInclude('open-sans-family.css')}
     <link href="templates/{$template}/css/all.min.css?v={$versionHash}" rel="stylesheet" />
     <link href="templates/{$template}/css/theme.min.css?v={$versionHash}" rel="stylesheet" />
+    <link href="templates/{$template}/css/appearance-legacy.css?v={$versionHash}&amp;iris=3" rel="stylesheet" />
+    <link href="templates/{$template}/css/appearance.css?v={$versionHash}&amp;iris=3" rel="stylesheet" />
+    <script src="templates/{$template}/js/appearance.js?v={$versionHash}&amp;iris=3"></script>
     <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome.min.css" rel="stylesheet" />
     <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-solid.min.css" rel="stylesheet" />
     <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-regular.min.css" rel="stylesheet" />
@@ -54,9 +69,6 @@
     </script>
 
     {$headoutput}
-
-    <link href="templates/{$template}/css/appearance-legacy.css?v={$versionHash}&amp;iris=2" rel="stylesheet" />
-    <link href="templates/{$template}/css/appearance.css?v={$versionHash}&amp;iris=2" rel="stylesheet" />
 
 </head>
 {assign var="showSidebar" value=$sidebar eq "support" && !empty($inticket)}
