@@ -1,7 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"{if $irisProCookieDark|default:false} data-iris-appearance="dark" style="background-color:#000;color-scheme:dark"{/if}>
   <head>
     <meta charset="{$charset}">
+    <meta name="color-scheme" content="{if $irisProCookieDark|default:false}dark{else}light{/if}">
+    <style id="irisAppearanceBoot">{literal}
+      html[data-iris-appearance="dark"], html[data-iris-appearance="dark"] body { background-color: #000 !important; color-scheme: dark; }
+    {/literal}</style>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="referrer" content="same-origin">
@@ -10,25 +14,23 @@
 
     {* Set the saved palette before the browser can paint the document. This
        inline bootstrap must remain ahead of every external script and style. *}
-    <script>
+    <script>{literal}
         (function () {
-            var saved = null;
-            try { saved = window.localStorage.getItem('whmcs.iris-pro.appearance'); } catch (error) {}
-            var dark = saved === 'dark' || (saved !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-            if (dark) {
-                document.documentElement.setAttribute('data-iris-appearance', 'dark');
-                document.documentElement.style.colorScheme = 'dark';
-                document.documentElement.style.backgroundColor = '#000000';
-            }
+            var match = document.cookie.match(/(?:^|;\s*)irispro_appearance_v2=(light|dark)(?:;|$)/);
+            var mode = match ? match[1] : null;
+            var dark = mode === 'dark' || (mode !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+            window.irisProInitial = { mode: mode };
+            var root = document.documentElement;
+            root.setAttribute('data-iris-appearance', dark ? 'dark' : 'light');
+            root.style.colorScheme = dark ? 'dark' : 'light';
+            root.style.backgroundColor = dark ? '#000000' : '';
         }());
-    </script>
-
+    {/literal}</script>
+    <link rel="preload" as="style" href="templates/{$template}/css/appearance-legacy.css?v={$versionHash}&amp;iris=7" />
+    <link rel="preload" as="style" href="templates/{$template}/css/appearance.css?v={$versionHash}&amp;iris=7" />
     {\WHMCS\View\Asset::fontCssInclude('open-sans-family.css')}
     <link href="templates/{$template}/css/all.min.css?v={$versionHash}" rel="stylesheet" />
     <link href="templates/{$template}/css/theme.min.css?v={$versionHash}" rel="stylesheet" />
-    <link href="templates/{$template}/css/appearance-legacy.css?v={$versionHash}&amp;iris=3" rel="stylesheet" />
-    <link href="templates/{$template}/css/appearance.css?v={$versionHash}&amp;iris=3" rel="stylesheet" />
-    <script src="templates/{$template}/js/appearance.js?v={$versionHash}&amp;iris=3"></script>
     <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome.min.css" rel="stylesheet" />
     <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-solid.min.css" rel="stylesheet" />
     <link href="{$WEB_ROOT}/assets/fonts/css/fontawesome-regular.min.css" rel="stylesheet" />
@@ -69,6 +71,11 @@
     </script>
 
     {$headoutput}
+
+    {* Load the Iris overrides last, preserving WHMCS headoutput cascade order. *}
+    <link href="templates/{$template}/css/appearance-legacy.css?v={$versionHash}&amp;iris=7" rel="stylesheet" />
+    <link href="templates/{$template}/css/appearance.css?v={$versionHash}&amp;iris=7" rel="stylesheet" />
+    <script src="templates/{$template}/js/appearance.js?v={$versionHash}&amp;iris=7"></script>
 
 </head>
 {assign var="showSidebar" value=$sidebar eq "support" && !empty($inticket)}

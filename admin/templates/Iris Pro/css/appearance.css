@@ -2,6 +2,16 @@
  * Dark surfaces and foregrounds are paired; never invert the page or its media.
  * Keep this file after theme.min.css and appearance-legacy.css. */
 @media screen {
+:root[data-iris-appearance] {
+    --color-primary: #2b7fff;
+    --color-primary-hover: color-mix(in srgb, #2b7fff 82%, white);
+    --color-primary-active: color-mix(in srgb, #2b7fff 72%, white);
+    --color-border-focus: #2b7fff;
+    --color-input-border-focus: #2b7fff;
+    --color-link: #2b7fff;
+    --color-link-hover: color-mix(in srgb, #2b7fff 72%, white);
+    --color-on-primary: #111111;
+}
 :root[data-iris-appearance="dark"] {
     color-scheme: dark;
     --color-bg: #000000;
@@ -23,18 +33,18 @@
     --color-border-subtle: #292929;
     --color-divider: #303030;
     --color-border-strong: #484848;
-    --color-border-focus: #85baff;
-    --color-primary: #85baff;
-    --color-primary-hover: #a8ceff;
-    --color-primary-active: #c5deff;
+    --color-border-focus: #2b7fff;
+    --color-primary: #2b7fff;
+    --color-primary-hover: color-mix(in srgb, #2b7fff 82%, white);
+    --color-primary-active: color-mix(in srgb, #2b7fff 72%, white);
     --color-primary-subtle: #1c3557;
     --color-primary-light: #a8ceff;
     --color-on-primary: #081526;
     --color-info: #83c6ff;
     --color-info-hover: #b1ddff;
     --color-info-subtle: #18364b;
-    --color-link: #93c5fd;
-    --color-link-hover: #c5deff;
+    --color-link: #2b7fff;
+    --color-link-hover: color-mix(in srgb, #2b7fff 72%, white);
     --color-success: #6ee7aa;
     --color-success-fg: #071b10;
     --color-success-deep: #8cebbc;
@@ -54,7 +64,7 @@
     --color-input-bg: #222222;
     --color-input-border: #3b3b3b;
     --color-input-border-hover: #555555;
-    --color-input-border-focus: #85baff;
+    --color-input-border-focus: #2b7fff;
     --color-input-placeholder: #a0a0a0;
     --color-input-text: #dedede;
     --color-input-disabled-bg: #191919;
@@ -122,6 +132,8 @@
     --iris-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b8c2d1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     --iris-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23081526' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
 }
+:root[data-iris-appearance="dark"],
+:root[data-iris-appearance="dark"] body { background-color: #000000 !important; color: var(--text); }
 
 
 
@@ -168,9 +180,6 @@
 
 /* The SVG itself supplies a media-specific fill so brand green stays green. */
 :root[data-iris-appearance="dark"] .nav-rail { background-color: var(--bg); }
-:root[data-iris-appearance="dark"] .rail-brand img {
-    content: url("../images/logo-dark.svg");
-}
 
 /* Bootstrap and plug-ins with defaults outside Iris's token layer. */
 :root[data-iris-appearance="dark"] :is(.dropdown-menu, .popover, .modal-content, .well, .list-group-item, .panel, .datepicker, .daterangepicker, .select2-dropdown) {

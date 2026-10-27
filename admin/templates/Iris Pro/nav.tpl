@@ -10,10 +10,12 @@
     blend-parity element (blend/nav.tpl:430) and still reads the same flag.
 *}
 
+{if empty($irisProLogoLightUrl)}{assign var="irisProLogoLightUrl" value="templates/$template/images/logo.svg"}{/if}
+{if empty($irisProLogoDarkUrl)}{assign var="irisProLogoDarkUrl" value="templates/$template/images/logo-dark.svg"}{/if}
 <aside class="nav-rail" id="adminNavRail" data-test="admin-nav">
     <div class="rail-brand-row">
         <a href="index.php" class="rail-brand" title="{$_ADMINLANG.home.title}">
-            <img src="templates/{$template}/images/logo.svg" alt="WHMCS">
+            <img src="{$irisProLogoLightUrl|escape:'html'}" data-iris-logo-light="{$irisProLogoLightUrl|escape:'html'}" data-iris-logo-dark="{$irisProLogoDarkUrl|escape:'html'}" alt="WHMCS">
         </a>
 
         {if in_array("Add New Client", $admin_perms) || in_array("Add New Order", $admin_perms) || in_array("Create Invoice", $admin_perms) || in_array("Manage Quotes", $admin_perms) || in_array("Open New Ticket", $admin_perms)}
@@ -796,7 +798,6 @@
                 <path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z" />
             </svg>
         </button>
-
         <div class="rail-footer-item has-dropdown staff-dropdown" data-dropdown>
             <a id="Menu-Staff" href="#" onclick="return false;" class="rail-icon-btn rail-staff-btn" data-dropdown-btn
                aria-haspopup="true" aria-expanded="false"
@@ -903,7 +904,7 @@
 {* ---- mobile header (below lg): brand + drawer trigger ---- *}
 <div class="mobile-header">
     <a href="index.php" class="rail-brand" title="{$_ADMINLANG.home.title}">
-        <img src="templates/{$template}/images/logo.svg" alt="WHMCS">
+        <img src="{$irisProLogoLightUrl|escape:'html'}" data-iris-logo-light="{$irisProLogoLightUrl|escape:'html'}" data-iris-logo-dark="{$irisProLogoDarkUrl|escape:'html'}" alt="WHMCS">
     </a>
     <button type="button" class="mobile-rail-toggle" id="railToggle" aria-controls="adminNavRail" aria-expanded="false" aria-label="{$_ADMINLANG.home.title}">
         <i class="far fa-bars" aria-hidden="true"></i>

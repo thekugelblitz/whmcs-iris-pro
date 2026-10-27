@@ -1,56 +1,45 @@
-# WHMCS Iris Pro
+# Iris Pro — WHMCS Admin Theme with Dark Mode
 
-A separate WHMCS admin theme based on Iris, with the original Light palette and a refined black-and-charcoal Dark palette. Install it alongside the original `iris` theme so administrators can switch back without overwriting the vendor theme.
+Iris Pro is a WHMCS administrator theme with a light interface, an AMOLED-inspired dark mode, a navigation theme switch, and optional custom logos. It is based on the WHMCS Iris admin theme.
 
-## Appearance
+## Author and publisher
 
-- **Light** preserves Iris's original colors.
-- **Dark** uses a `#000000` main canvas, `#161616` panels and `#222222` controls, editors and raised surfaces. Muted gray borders provide separation; focused controls retain an accent ring.
-- The sun/moon button sits immediately before Staff in the navigation footer, including the mobile drawer. It toggles between Light and Dark and supports keyboard activation, tooltips and screen-reader announcements.
-- System appearance is followed on the first visit. An explicit choice is stored under `whmcs.iris-pro.appearance`, survives reloads and synchronizes across tabs. This preference is separate from the original Iris customization. With browser storage blocked, switching still works for the current page.
+**Published by Dhruval Joshi from [HostingSpell LLP (hostingspell.com)](https://hostingspell.com).** Iris Pro is a contribution to the WHMCS hosting community by Dhruval Joshi and HostingSpell LLP.
 
-The palette covers shared forms, tables, billing components, status messages, navigation, search, dropdowns, dialogs, date pickers, editor controls and chart labels. Legacy ticket AI and scheduled-action styles have a compatibility layer. Media and customer HTML previews retain their original colors.
+## Features
 
-The ticket editor's bundled Bootstrap Markdown stylesheet sets white backgrounds with `!important`. Iris Pro explicitly pairs dark backgrounds with readable text for typing, preview, fullscreen and focus states. Same-origin TinyMCE editing canvases are also themed, without changing draft content.
+- Light and dark modes, with black page backgrounds and charcoal panels in dark mode.
+- A theme switch in the desktop sidebar and mobile navigation. The choice is stored in a one-year browser cookie and shared by administrators using that browser profile.
+- Early application of the cookie preference on refresh. The supplied hook also lets WHMCS render the initial dark canvas from the cookie; no theme preference database or network save is required.
+- Dark styling for common admin components and ticket editors, including same-origin rich text editor frames.
+- Separate light and dark PNG logos, with the built-in WHMCS logo as a fallback.
 
-## Install alongside Iris
+## Installation
 
-1. Copy the **entire** `templates/templates/Iris Pro` folder into `<your WHMCS admin directory>/templates/Iris Pro`. Preserve its capitalization and space. The normal `iris` directory stays in place.
-2. Select **Iris Pro** as the administrator's template in WHMCS administrator settings. Admin template selection is per administrator; use the original **iris** entry to roll back.
-3. Clear the compiled template cache through WHMCS's system cleanup tools and refresh any CDN/browser cache.
-4. Use the appearance button next to Staff to select Light or Dark.
+The `admin` directory in this repository is an **example**. Your actual WHMCS admin directory may have any configured name, such as `admin` or a custom name. The WHMCS root is the directory containing `configuration.php`.
 
-This repository contains an admin theme, not the WHMCS application or a client-area storefront. The duplicated `templates/templates` path reflects the supplied archive layout; it is not an instruction to create an extra nesting level on the server. Copy the inner **Iris Pro** folder into the actual admin `templates` directory. Run `powershell -File tools/package-theme.ps1` to generate a deployment archive under `dist/`; extract it inside the admin **templates** directory so its `Iris Pro` folder lands correctly. Generated archives are excluded from Git.
+1. Back up the installation. Copy `admin/templates/Iris Pro/` from this repository to `<your-admin-directory>/templates/Iris Pro/` on the server. Keep the original Iris theme installed.
+2. Copy `admin/templates/Iris Pro/integrations/includes/hooks/irispro_preferences.php` to `<WHMCS-root>/includes/hooks/irispro_preferences.php`. This hook supplies the early cookie hint and detects custom logos.
+3. For the optional logo upload page, copy `admin/templates/Iris Pro/integrations/modules/addons/irispro/` to `<WHMCS-root>/modules/addons/irispro/`. In WHMCS **System Settings > Addon Modules**, activate **Iris Pro Preferences** and grant access only to trusted administrators. The **Configure General Settings** permission is also required to upload logos.
+4. In **My Account**, select **Iris Pro** as the administrator template. Clear the WHMCS template cache and refresh the browser.
+5. Use the appearance button in the navigation footer to select Light or Dark. Select Dark once after upgrading from an earlier preference system. Clearing cookies resets the browser's choice; the selection does not follow an account to another browser or device.
 
-Keep the original Iris installation available. Iris Pro retains upstream WHMCS copyright and license notices. The upstream code and bundled assets remain subject to their existing licenses; this customization does not relicense them.
+The integration files remain under the theme folder in this repository to keep the repository layout simple; WHMCS discovers them at the root paths in steps 2 and 3. The original admin folder name and URL need not be `admin`.
 
-## Development
+## Custom WHMCS admin logos
 
-The upstream minified bundles are unchanged. The custom appearance implementation lives in:
+Open **Addons > Iris Pro Preferences** to upload a PNG for either appearance. Light mode uses `<your-admin-directory>/templates/Iris Pro/images/logo-light.png`; Dark mode uses `logo-dark.png` in the same folder. The original SVG is used for any variant without an uploaded logo. Both desktop and mobile navigation use the selected variant.
 
-- `js/appearance.js`: early preference restoration, two-mode switching, accessibility, tab synchronization and editing-frame appearance.
-- `css/appearance.css`: palette, surfaces, control states and targeted editor/component fixes.
-- `css/appearance-legacy.css`: generated overrides for known literal colors in the shipped theme.
-- `images/logo-dark.svg`: legible wordmark with the original green brand mark.
-- `header.tpl` and `nav.tpl`: asset loading and the navigation button.
+The WHMCS wordmark's SVG is 211 × 48 pixels and is displayed at 24 pixels high. A transparent **422 × 96 pixel** PNG provides a matching 2× canvas. Keep the artwork proportional and add transparent padding if needed. PNG files must be at most **2 MB**, no larger than **422 × 96 pixels**, and have a canvas aspect ratio between **3:1 and 6:1**.
 
-Install the test dependency, then build and verify:
+The uploader checks administrator permission and the WHMCS security token, validates the upload, MIME type, PNG format and dimensions, and uses PHP GD to decode and re-encode the image. It writes only the fixed logo filenames and rejects symlinked theme paths. PHP Fileinfo and GD must be enabled, and the admin PHP process needs write access to the theme's `images/` directory. You may alternatively place appropriately sized PNG files there using your hosting file manager.
 
-```powershell
-npm ci --prefix tools
-$env:BROWSER_CHANNEL = 'msedge'
-node tools/build-appearance.cjs
-node tools/verify-appearance.cjs
-```
+## Compatibility and security
 
-For bundled Chromium, install it with `npx --prefix tools playwright install chromium` and omit `BROWSER_CHANNEL`. The browser parser regenerates legacy rules from `theme.min.css`; review the explicit mapping when upgrading the upstream Iris theme. Increment the `iris=2` revision in `header.tpl` whenever the custom assets change.
+Iris Pro is an admin theme, not a client-area theme. Test it with your WHMCS release and extensions before production use; third-party CSS, charts and cross-origin frames may need their own styling.
 
-## Verification
+The supplied Iris vendor bundle includes **jQuery 1.12.4**, which is affected by published jQuery security advisories, including [CVE-2020-11022](https://github.com/jquery/jquery/security/advisories/GHSA-gxr4-xjj5-5px2). Compatibility with WHMCS and its extensions must be verified before replacing that bundled library. The custom logo uploader is validated as described above, but the bundled upstream code and installed extensions have not received a complete security audit.
 
-`verification/results.json` records the latest component integration run. Screenshots in `verification/` show a synthetic QA fixture using the actual Iris CSS/JS and Bootstrap Markdown plugin; they are not screenshots of a live WHMCS account. The fixture uses placeholders for Smarty output and no customer data.
+The theme includes upstream WHMCS/Iris template files and bundled assets. Those files remain subject to their respective licenses and are not relicensed by Iris Pro. Obtain the necessary WHMCS permission before redistributing the complete modified theme. Font license notices remain with the fonts.
 
-Checks cover original-Light color parity; Dark text contrast; true-black page, rail and content; charcoal controls; the real ticket editor's typing, preview and fullscreen states; draft preservation; rich-text frame restoration; keyboard activation; saved preferences; cross-tab updates; blocked storage; system preference changes; mobile controls at 320/390/768/1023px and a short landscape viewport; and print appearance. Sampled Dark text exceeds the WCAG AA 4.5:1 requirement. This is component verification, not a complete accessibility audit or certification of every server-rendered WHMCS page.
-
-Before production rollout, smoke-test your installed WHMCS version with its actual permissions and enabled modules: dashboard widgets, client/service/domain forms, invoices and transactions, orders, ticket replies and dialogs, reports/charts, configuration, search and Ajax dialogs. Those server-rendered workflows are not available in this asset-only checkout.
-
-Third-party modules may supply their own styles or canvas-drawn charts. Cross-origin iframes cannot inherit the admin theme. Customer HTML previews intentionally preserve authored colors. Independently generated popup or login documents that do not include Iris Pro's header require the appearance assets in their own document header; shared login and client-area templates are outside this theme.
+WHMCS and Iris are trademarks of their respective owners.
