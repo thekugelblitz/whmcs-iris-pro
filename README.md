@@ -1,6 +1,6 @@
 # Iris Pro — WHMCS Admin Theme with Dark Mode
 
-Iris Pro is a WHMCS administrator theme with a light interface, an AMOLED-inspired dark mode, a navigation theme switch, and optional custom logos. It is based on the WHMCS Iris admin theme.
+Iris Pro is a WHMCS administrator theme with a light interface, an AMOLED-inspired dark mode, a navigation theme switch, and optional custom logos. It is based on the WHMCS Iris admin theme and is currently made for and compatible with **WHMCS 9.1.x**.
 
 ## Author and publisher
 
@@ -36,7 +36,7 @@ The uploader checks administrator permission and the WHMCS security token, valid
 
 ## Compatibility and security
 
-Iris Pro is an admin theme, not a client-area theme. Test it with your WHMCS release and extensions before production use; third-party CSS, charts and cross-origin frames may need their own styling.
+Iris Pro is designed for **WHMCS 9.1.x**. Compatibility with other WHMCS versions has not been established. It is an admin theme, not a client-area theme. Test it with your WHMCS release and extensions before production use; third-party CSS, charts and cross-origin frames may need their own styling.
 
 The supplied Iris vendor bundle includes **jQuery 1.12.4**, which is affected by published jQuery security advisories, including [CVE-2020-11022](https://github.com/jquery/jquery/security/advisories/GHSA-gxr4-xjj5-5px2). Compatibility with WHMCS and its extensions must be verified before replacing that bundled library. The custom logo uploader is validated as described above, but the bundled upstream code and installed extensions have not received a complete security audit.
 
