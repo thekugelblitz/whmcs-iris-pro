@@ -1,0 +1,11 @@
+{
+  "name": "iris-appearance-verification",
+  "private": true,
+  "scripts": {
+    "build": "node build-appearance.cjs",
+    "test": "node verify-appearance.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}

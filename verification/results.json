@@ -1,0 +1,33 @@
+{
+  "modes": [
+    {
+      "mode": "light",
+      "failures": [],
+      "minimumContrast": 4.74,
+      "body": "rgb(244, 244, 245)",
+      "content": "rgb(255, 255, 255)",
+      "rail": "rgba(0, 0, 0, 0)",
+      "input": "rgb(255, 255, 255)"
+    },
+    {
+      "mode": "dark",
+      "failures": [],
+      "minimumContrast": 6.08,
+      "body": "rgb(0, 0, 0)",
+      "content": "rgb(0, 0, 0)",
+      "rail": "rgb(0, 0, 0)",
+      "input": "rgb(34, 34, 34)"
+    }
+  ],
+  "checks": [
+    "Light-mode computed colors match the original Iris styles",
+    "Saved preference survives reload; native Enter and Space cycle modes",
+    "Real Bootstrap Markdown typing, preview and fullscreen stay charcoal; drafts survive switching back to Light",
+    "Dynamically initialized note editors inherit the active Dark palette",
+    "Rich-text editing canvas follows dark mode and restores its original light styles",
+    "Changes synchronize across browser tabs",
+    "320/390/768/1023px mobile drawers keep the switch beside Staff with a 44px touch target",
+    "Print uses a light paper surface",
+    "System appearance is followed until a selection is saved; blocked storage still permits switching"
+  ]
+}

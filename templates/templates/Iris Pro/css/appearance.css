@@ -1,0 +1,246 @@
+/* Iris Pro appearance layer. Light retains the original WHMCS palette.
+ * Dark surfaces and foregrounds are paired; never invert the page or its media.
+ * Keep this file after theme.min.css and appearance-legacy.css. */
+@media screen {
+:root[data-iris-appearance="dark"] {
+    color-scheme: dark;
+    --color-bg: #000000;
+    --color-bg-subtle: #222222;
+    --color-bg-cream: #161616;
+    --color-surface: #161616;
+    --color-surface-raised: #222222;
+    --color-surface-hover: #2b2b2b;
+    --color-surface-inset: #222222;
+    --color-text: #dedede;
+    --color-text-strong: #f0f0f0;
+    --color-text-muted: #b5b5b5;
+    --color-text-subtle: #a0a0a0;
+    --color-text-disabled: #777777;
+    /* In Iris this token accompanies light heading-colored fills. */
+    --color-text-inverse: #101722;
+    --color-heading: #eeeeee;
+    --color-border: #303030;
+    --color-border-subtle: #292929;
+    --color-divider: #303030;
+    --color-border-strong: #484848;
+    --color-border-focus: #85baff;
+    --color-primary: #85baff;
+    --color-primary-hover: #a8ceff;
+    --color-primary-active: #c5deff;
+    --color-primary-subtle: #1c3557;
+    --color-primary-light: #a8ceff;
+    --color-on-primary: #081526;
+    --color-info: #83c6ff;
+    --color-info-hover: #b1ddff;
+    --color-info-subtle: #18364b;
+    --color-link: #93c5fd;
+    --color-link-hover: #c5deff;
+    --color-success: #6ee7aa;
+    --color-success-fg: #071b10;
+    --color-success-deep: #8cebbc;
+    --color-success-subtle: #123926;
+    --color-warning: #f7cc71;
+    --color-warning-deep: #f7d897;
+    --color-warning-subtle: #3b2d13;
+    --color-danger: #ff8fb0;
+    --color-danger-hover: #ffacc4;
+    --color-danger-deep: #ffc0d2;
+    --color-danger-subtle: #421d2c;
+    --color-on-semantic: #111111;
+    --color-action-bar: #dedede;
+    --color-chart-navy: #8cb4d9;
+    --color-chart-blue-deep: #a3a1f7;
+    --color-chart-blue-deepest: #df9bd8;
+    --color-input-bg: #222222;
+    --color-input-border: #3b3b3b;
+    --color-input-border-hover: #555555;
+    --color-input-border-focus: #85baff;
+    --color-input-placeholder: #a0a0a0;
+    --color-input-text: #dedede;
+    --color-input-disabled-bg: #191919;
+
+    /* Both token namespaces occur in the shipped CSS. */
+    --bg: var(--color-bg);
+    --bg-subtle: var(--color-bg-subtle);
+    --bg-cream: var(--color-bg-cream);
+    --surface: var(--color-surface);
+    --surface-raised: var(--color-surface-raised);
+    --surface-hover: var(--color-surface-hover);
+    --surface-inset: var(--color-surface-inset);
+    --text: var(--color-text);
+    --text-strong: var(--color-text-strong);
+    --text-muted: var(--color-text-muted);
+    --text-subtle: var(--color-text-subtle);
+    --text-disabled: var(--color-text-disabled);
+    --text-inverted: var(--color-text-inverse);
+    --heading: var(--color-heading);
+    --border: var(--color-border);
+    --border-subtle: var(--color-border-subtle);
+    --divider: var(--color-divider);
+    --border-strong: var(--color-border-strong);
+    --border-focus: var(--color-border-focus);
+    --primary: var(--color-primary);
+    --primary-lifted: var(--color-primary-hover);
+    --primary-accented: var(--color-primary-active);
+    --primary-subtle: var(--color-primary-subtle);
+    --primary-light: var(--color-primary-light);
+    --on-primary: var(--color-on-primary);
+    --info: var(--color-info);
+    --info-lifted: var(--color-info-hover);
+    --info-subtle: var(--color-info-subtle);
+    --info-text: #a0d5ff;
+    --link: var(--color-link);
+    --link-hover: var(--color-link-hover);
+    --success: var(--color-success);
+    --success-fg: var(--color-success-fg);
+    --success-deep: var(--color-success-deep);
+    --success-subtle: var(--color-success-subtle);
+    --warning: var(--color-warning);
+    --warning-deep: var(--color-warning-deep);
+    --warning-subtle: var(--color-warning-subtle);
+    --danger: var(--color-danger);
+    --danger-hover: var(--color-danger-hover);
+    --danger-deep: var(--color-danger-deep);
+    --danger-subtle: var(--color-danger-subtle);
+    --on-semantic: var(--color-on-semantic);
+    --action-bar: var(--color-action-bar);
+    --chart-navy: var(--color-chart-navy);
+    --chart-blue-deep: var(--color-chart-blue-deep);
+    --chart-blue-deepest: var(--color-chart-blue-deepest);
+    --input-bg: var(--color-input-bg);
+    --input-border: var(--color-input-border);
+    --input-border-hover: var(--color-input-border-hover);
+    --input-border-focus: var(--color-input-border-focus);
+    --input-placeholder: var(--color-input-placeholder);
+    --input-text: var(--color-input-text);
+    --input-disabled-bg: var(--color-input-disabled-bg);
+    --shadow-sm: 0 1px 3px #0006;
+    --shadow-card: 0 1px 2px #0008;
+    --shadow-popover: 0 16px 40px #0009;
+    --shadow-menu: 0 8px 20px #0008;
+    --iris-overlay: rgb(22 22 22 / 96%);
+    --iris-select-arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23b8c2d1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    --iris-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23081526' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+}
+
+
+
+.iris-appearance-toggle {
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+    touch-action: manipulation;
+}
+.iris-appearance-toggle svg { display: block; pointer-events: none; }
+.iris-appearance-toggle:focus-visible { outline: 2px solid var(--border-focus); outline-offset: 2px; }
+@media (max-width: 1023px) {
+    .iris-appearance-toggle { min-width: 44px; height: 44px; }
+    .nav-rail .rail-footer { padding-bottom: env(safe-area-inset-bottom, 0px); height: calc(56px + env(safe-area-inset-bottom, 0px)); }
+}
+
+/* Black canvas, quiet charcoal objects. Separation comes from surface levels
+ * rather than bright outlines around every object. */
+:root[data-iris-appearance="dark"] #contentarea { background-color: var(--bg); border-color: #202020; }
+:root[data-iris-appearance="dark"] :is(.sidebar, .ticket-view .ticket-header, .ticket-view .reply-options, .ticket-view .reply-options-wrapper) { background-color: var(--surface); border-color: var(--border-subtle); }
+:root[data-iris-appearance="dark"] :is(.rail-dropdown, .dropdown-menu, .popover, .modal-content, .selectize-dropdown, .select2-dropdown) { background-color: var(--surface-raised); box-shadow: var(--shadow-popover); }
+
+/* Bootstrap Markdown ships white !important backgrounds in all.min.css.
+ * Explicit paired foreground/background overrides are required in every mode
+ * of the editor, including the fullscreen class added dynamically. */
+:root[data-iris-appearance="dark"] .md-editor,
+:root[data-iris-appearance="dark"] .md-editor.md-fullscreen-mode { background: var(--surface) !important; color: var(--input-text); border-color: var(--border) !important; }
+:root[data-iris-appearance="dark"] .md-editor > textarea,
+:root[data-iris-appearance="dark"] .md-editor > .md-input,
+:root[data-iris-appearance="dark"] .md-editor > .md-preview,
+:root[data-iris-appearance="dark"] .md-editor.md-fullscreen-mode :is(.md-input, .md-preview) {
+    background: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    caret-color: var(--input-text);
+    border-color: var(--border-subtle) !important;
+}
+:root[data-iris-appearance="dark"] .md-editor > :is(.md-header, .md-footer) { background-color: var(--surface); color: var(--text-subtle); border-color: var(--border-subtle); }
+:root[data-iris-appearance="dark"] .md-editor .md-fullscreen-controls a { color: var(--text-muted); }
+:root[data-iris-appearance="dark"] .md-editor .md-fullscreen-controls a:hover { color: var(--text-strong); }
+:root[data-iris-appearance="dark"] :is(.panel-scheduled-actions-management, .reply-thread .reply-thread-header) { background: var(--surface-raised); border-color: var(--border-subtle); }
+:root[data-iris-appearance="dark"] :is(.ai-suggestion-preview, .reply-thread, .ai-references-section, .ai-tone-length-controls, .ai-collapsible-section) { border-width: 1px !important; border-color: var(--border) !important; }
+:root[data-iris-appearance="dark"] :is(.mce-edit-area, .tox-edit-area) iframe { border: 0; }
+
+/* The SVG itself supplies a media-specific fill so brand green stays green. */
+:root[data-iris-appearance="dark"] .nav-rail { background-color: var(--bg); }
+:root[data-iris-appearance="dark"] .rail-brand img {
+    content: url("../images/logo-dark.svg");
+}
+
+/* Bootstrap and plug-ins with defaults outside Iris's token layer. */
+:root[data-iris-appearance="dark"] :is(.dropdown-menu, .popover, .modal-content, .well, .list-group-item, .panel, .datepicker, .daterangepicker, .select2-dropdown) {
+    background-color: var(--surface);
+    color: var(--text);
+    border-color: var(--border);
+}
+:root[data-iris-appearance="dark"] :is(.dropdown-menu > li > a, .select2-results__option, .list-group-item-text, .help-block, .text-muted, .close) { color: var(--text-muted); }
+:root[data-iris-appearance="dark"] :is(.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .list-group-item:hover) { background-color: var(--surface-hover); color: var(--text-strong); }
+:root[data-iris-appearance="dark"] :is(.form-control, .selectize-input, .selectize-input input, .select2-search__field, .select2-selection) { background-color: var(--input-bg); color: var(--input-text); border-color: var(--input-border); }
+:root[data-iris-appearance="dark"] :is(input, textarea)::placeholder { color: var(--input-placeholder); opacity: 1; }
+:root[data-iris-appearance="dark"] :is(.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control) { background-color: var(--input-disabled-bg); color: var(--text-muted); }
+:root[data-iris-appearance="dark"] :is(input, select, textarea) { accent-color: var(--primary); }
+:root[data-iris-appearance="dark"] :is(#contentarea, .modal, .sidebar) select:not([multiple]):not([size]),
+:root[data-iris-appearance="dark"] .mce-container .mce-listbox .mce-caret,
+:root[data-iris-appearance="dark"] .selectize-control.single .selectize-input::after { background-image: var(--iris-select-arrow); }
+:root[data-iris-appearance="dark"] :is(#contentarea, .modal) input[type="checkbox"]:checked,
+:root[data-iris-appearance="dark"] .mce-window .mce-checkbox.mce-checked i.mce-i-checkbox { background-image: var(--iris-check); }
+:root[data-iris-appearance="dark"] :is(#contentarea, .modal) input[type="checkbox"]:indeterminate { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23081526' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M5 12h14'/%3E%3C/svg%3E"); }
+:root[data-iris-appearance="dark"] :is(#contentarea, .modal) input[type="radio"]:checked { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='6' fill='%23081526'/%3E%3C/svg%3E"); }
+:root[data-iris-appearance="dark"] :is(.input-group-addon, pre, code, kbd, .table-striped > tbody > tr:nth-of-type(odd)) { background-color: var(--surface-inset); color: var(--text); border-color: var(--border); }
+:root[data-iris-appearance="dark"] :is(.table > thead > tr > th, .table > tbody > tr > td, .table > tfoot > tr > td, .table-bordered, .table-bordered th, .table-bordered td, hr) { border-color: var(--border); }
+:root[data-iris-appearance="dark"] .table-hover > tbody > tr:hover { background-color: var(--surface-hover); }
+:root[data-iris-appearance="dark"] :is(.text-success, .has-success .help-block, .has-success .control-label) { color: var(--success-deep); }
+:root[data-iris-appearance="dark"] :is(.text-warning, .has-warning .help-block, .has-warning .control-label) { color: var(--warning-deep); }
+:root[data-iris-appearance="dark"] :is(.text-danger, .has-error .help-block, .has-error .control-label) { color: var(--danger-deep); }
+:root[data-iris-appearance="dark"] .text-info { color: var(--info-text); }
+:root[data-iris-appearance="dark"] :is(.bg-success, .table .success > td) { background-color: var(--success-subtle); color: var(--success-deep); }
+:root[data-iris-appearance="dark"] :is(.bg-warning, .table .warning > td) { background-color: var(--warning-subtle); color: var(--warning-deep); }
+:root[data-iris-appearance="dark"] :is(.bg-danger, .table .danger > td) { background-color: var(--danger-subtle); color: var(--danger-deep); }
+:root[data-iris-appearance="dark"] :is(.bg-info, .table .info > td) { background-color: var(--info-subtle); color: var(--info-text); }
+
+/* Retain readable foregrounds on intentionally colored badges and fills. */
+:root[data-iris-appearance="dark"] :is(.label-success, .label-warning, .label-info) { color: #101722; }
+:root[data-iris-appearance="dark"] :is(.label-default, .label-primary, .label-danger, .badge) { background-color: var(--surface-hover); color: var(--text-strong); }
+:root[data-iris-appearance="dark"] :is(.requestor-type-operator, .requestor-type-owner, .requestor-type-registereduser, .requestor-type-guest) { color: #101722; }
+:root[data-iris-appearance="dark"] :is(.requestor-type-authorizeduser, .requestor-type-subaccount, .label.ticket-actions-count) { background-color: var(--surface-hover); color: var(--text); }
+:root[data-iris-appearance="dark"] :is(.tooltip-inner, .sidebar-opener, #ticketreplies .reply.staff .reply-avatar, .select2-results__option[aria-selected="true"], .selectize-control.multi .selectize-input > div.active) { color: var(--text-inverted); }
+:root[data-iris-appearance="dark"] #contentarea a:has(> img.marketconnect-logo) ~ p.lead { color: #f3f6fb; }
+
+/* Only known legacy neutral attributes are remapped; custom status swatches,
+ * payment logos, attachments, charts and customer HTML keep their colors. */
+:root[data-iris-appearance="dark"] :is(#contentarea, .modal, .sidebar) :is([bgcolor="#ffffff" i], [bgcolor="#fff" i], [bgcolor="white" i]) { background-color: var(--surface) !important; color: var(--text); }
+:root[data-iris-appearance="dark"] :is(#contentarea, .modal, .sidebar) :is([bgcolor="#efefef" i], [bgcolor="#f5f5f5" i], [bgcolor="#eeeeee" i]) { background-color: var(--surface-inset) !important; color: var(--text); }
+:root[data-iris-appearance="dark"] #aiRatingFeedbackLoader,
+:root[data-iris-appearance="dark"] #ticketReplyAiSuggestions .ai-loading-overlay { background: var(--iris-overlay) !important; }
+:root[data-iris-appearance="dark"] :is(#aiRatingFeedbackLoader, #aiRatingFeedbackSuccess, #aiRatingFeedbackError) p { color: var(--text-muted) !important; }
+:root[data-iris-appearance="dark"] #ticketReplyAiSuggestions .ai-review-instructions .ai-review-description { color: var(--text-muted); }
+:root[data-iris-appearance="dark"] :is(.ai-references-section .references-body .reference-item:hover, .ai-references-section .references-body .no-references) { background: var(--surface-inset); }
+:root[data-iris-appearance="dark"] .modal-backdrop.in { background-color: #0009; }
+:root[data-iris-appearance="dark"] #mce-modal-block { background: #000; }
+:root[data-iris-appearance="dark"] .mce-window .mce-textbox { background: var(--input-bg); }
+:root[data-iris-appearance="dark"] .mce-menubar .mce-menubtn.mce-active { background: var(--heading); }
+:root[data-iris-appearance="dark"] :is(.datepicker table tr td.day:hover, .datepicker table tr td span:hover, .daterangepicker td.available:hover, .daterangepicker th.available:hover) { background: var(--surface-hover); color: var(--text-strong); }
+:root[data-iris-appearance="dark"] :is(.datepicker table tr td.active, .datepicker table tr td.active:hover, .datepicker table tr td span.active, .daterangepicker td.active, .daterangepicker td.active:hover) { background: var(--primary) !important; color: var(--on-primary) !important; text-shadow: none; }
+:root[data-iris-appearance="dark"] :is(.datepicker table tr td.old, .datepicker table tr td.new, .datepicker table tr td.disabled, .daterangepicker td.off) { color: var(--text-subtle); background-color: var(--surface); }
+:root[data-iris-appearance="dark"] :is(.daterangepicker .calendar-table, .daterangepicker .drp-buttons) { background: var(--surface); border-color: var(--border); }
+:root[data-iris-appearance="dark"] .fc-unthemed td.fc-today { background: var(--warning-subtle); }
+:root[data-iris-appearance="dark"] [id^="chartcont"] svg text { fill: var(--text-muted); }
+:root[data-iris-appearance="dark"] [id^="chartcont"] svg :is(path, line)[stroke="#cccccc" i],
+:root[data-iris-appearance="dark"] [id^="chartcont"] svg :is(path, line)[stroke="#e0e0e0" i] { stroke: var(--border); }
+:root[data-iris-appearance="dark"] :is(.google-visualization-tooltip, .morris-hover.morris-default-style, .chartjs-tooltip) { background: var(--surface) !important; border-color: var(--border) !important; color: var(--text) !important; }
+:root[data-iris-appearance="dark"] :is(.rail-dropdown, .dropdown-menu, .popover, .modal-content, .selectize-dropdown, .select2-dropdown) { background-color: var(--surface-raised); }
+:root[data-iris-appearance="dark"] ::selection { background: var(--primary); color: var(--on-primary); }
+}
+
+/* Paper output must stay legible regardless of the saved display mode. */
+@media print {
+    :root[data-iris-appearance] { color-scheme: light !important; }
+    :root[data-iris-appearance] body,
+    :root[data-iris-appearance] #contentarea { background: white !important; color: black !important; }
+    .iris-appearance-toggle { display: none !important; }
+}
